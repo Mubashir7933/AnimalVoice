@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drum Projects</title>
+    <link rel="stylesheet" type="text/css" href="
+    Style.css" />
+</head>
+<body>
+
+    <div class="keys">
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <span class="sound">clap</span>
+        </div>
+        <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <span class="sound">Hihat</span>
+        </div>
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <span class="sound">Kick</span>
+        </div>
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <span class="sound">openhat</span>
+        </div>
+        <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <span class="sound">Tink</span>
+        </div>
+        <div data-key="27" class="key">
+            <kbd class="Escape ">Escape</kbd>
+            <span class="sound">Tink</span>
+        </div>
+
+
+
+
+        <audio data-key="65" src="Sounds/mixkit-aggressive-monster-beast-roar-14.wav"></audio>
+        <audio data-key="83" src="Sounds/mixkit-angry-cartoon-kitty-meow-94.wav"></audio>
+        <audio data-key="68" src="Sounds/mixkit-angry-dragon-growl-309.wav"></audio>
+        <audio data-key="70" src="Sounds/mixkit-big-bee-hard-flying-sound-42.wav"></audio>
+        <audio data-key="71" src="Sounds/mixkit-big-wild-lion-growl-95.wav"></audio>
+        <audio data-key="27" src="Sounds/mixkit-bird-movement-while-flying-2703.wav"></audio>
+
+        <!--<audio data-key="11" src=""></audio>
+        <audio data-key="27" src=""></audio>-->
+    </div>
+
+<script>
+    window.addEventListener('keydown', function(e){
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if(!audio) return;//Stop the function from running all together.
+        audio.currentTime = 0; // rewind the audio after pressing the keys
+        audio.play();
+        key.classList.add('playing');
+       // key.classList.remove('remove');
+    });
+
+function removeTransition(e){
+    if (e.propertyName !== 'transform') return;// skip if it's not a 
+    //transform
+this.classList.remove('playing'); //This is basically refering to the key that is going to be pressed
+}
+
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+</script>
+</body>
+</html>
